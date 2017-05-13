@@ -73,8 +73,8 @@ a {
   right: 0;
   text-align: center;
   overflow: hidden;
-  width: @board-block-preview-width;
-  height: @board-block-preview-height;
+  width: @block-preview-width;
+  height: @block-preview-height;
   border: @border-width solid @border-color;
   border-top-right-radius: @board-border-radius;
   border-bottom-right-radius: @board-border-radius;
@@ -82,12 +82,12 @@ a {
 
   .block {
     position: absolute;
-    left: @board-block-preview-padding - @border-width;
-    top: @board-block-preview-padding;
+    left: @block-preview-padding - @border-width;
+    top: @block-preview-padding;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
     & + .block {
-      top: (@board-block-preview-padding * 2) + @block-height;
+      top: (@block-preview-padding * 2) + @block-height;
     }
   }
 }
@@ -100,7 +100,7 @@ a {
   right: 0;
   margin: 0 auto;
   overflow: hidden;
-  width: @board-width + @board-counter-width + @board-block-preview-width - (@border-width * 2);
+  width: @board-width + @board-counter-width + @block-preview-width - (@border-width * 2);
   height: @board-container-height;
 }
 
@@ -145,6 +145,9 @@ a {
 body {
   overflow: hidden;
   min-height: 100%;
+  font-size: @font-size-large;
+  font-family: @font-family-sans-serif;
+  background-color: #090313;
   background: linear-gradient(to bottom,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%);
   background-attachment: fixed;
 }
