@@ -19,7 +19,8 @@ class Play {
       upcoming: this.game.upcoming,
       blocks: this.game.blocks,
       isGameOver: this.game.isGameOver,
-      inProgress: this.game.inProgress
+      inProgress: this.game.inProgress,
+      isPaused: !this.game.inProgress && !this.game.isGameOver
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
   }

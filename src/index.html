@@ -13,7 +13,7 @@
     <div id="root"></div>
     <template id="game-board-template" type="x-tmpl-mustache">
       {{#inProgress}}<div class="board-container in-progress">{{/inProgress}}
-      {{^inProgress}}<div class="board-container paused">{{/inProgress}}
+      {{#isPaused}}<div class="board-container paused">{{/isPaused}}
       {{#isGameOver}}<div class="board-container game-over">{{/isGameOver}}
         <div class="score">{{ currentScore }}</div>
         <div class="level">{{ level }}</div>
@@ -57,14 +57,14 @@
             </button>
           </div>
         {{/isGameOver}}
-        {{^inProgress}}
+        {{#isPaused}}
           <div class="game-message paused">
             <h2 class="simlish">paused</h2>
             <button type="button">
               Resume Game
             </button>
           </div>
-        {{/inProgress}}
+        {{/isPaused}}
       </div>
     </template>
   </body>
