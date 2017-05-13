@@ -30,6 +30,7 @@
     "electron-compile": "^6.4.1",
     "electron-compilers": "^5.9.0",
     "electron-config": "^1.0.0",
-    "electron-packager": "^8.7.0"
+    "electron-packager": "^8.7.0",
+    "mustache": "^2.3.0"
   }
 }
