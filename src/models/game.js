@@ -10,6 +10,7 @@ class Game {
     opts = opts || {}
     this.level = opts.level || 1
     this.tickLength = opts.tickLength || 1000 // ms
+    this.tickLengthDecrementPct = opts.tickLengthDecrementPct || 0.09
     this.upcoming = [new Block(), new Block()]
     this.blocks = []
     this.inProgress = true
@@ -188,6 +189,7 @@ class Game {
     for (const block of this.blocks.filter(b => b && b.isLocked && !b.isActive)) {
       const checker = new TetrominoChecker(this.blocks, block)
       if (checker.check()) {
+        console.log('found tetromino', checker.tetromino)
         this.removeBlocks(checker.tetromino)
       }
     }
@@ -209,11 +211,22 @@ class Game {
     }
     this.currentScore += this.scoreValue
     this.incrementLevelIfNecessary()
+    this.redraw()
+
     const blocksOnTop = this.blocksOnTop(blocksToRemove).filter(b => !b.isActive)
     if (blocksOnTop.length > 0) {
       this.plummetBlocks(blocksOnTop)
     }
     this.checkForTetrominos()
+  }
+
+  incrementLevelIfNecessary() {
+    if (this.currentScore % 4000 === 0) {
+      this.level++
+      this.tickLength -= this.tickLength * this.tickLengthDecrementPct
+      this.cancelGameInterval()
+      this.startGameInterval()
+    }
   }
 
   // Returns an array of blocks anywhere over top of the given blocks.
