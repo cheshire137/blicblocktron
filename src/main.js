@@ -13,7 +13,7 @@ function onTitleChange(event, prefix) {
 
 function createWindow() {
   const title = app.getName()
-  mainWindow = new BrowserWindow({ width: 800, height: 600, title })
+  mainWindow = new BrowserWindow({ width: 614, height: 615, title })
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 }
 

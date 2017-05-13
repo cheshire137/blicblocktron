@@ -24,9 +24,9 @@
 @board-score-height: 80px;
 @board-counter-width: 120px;
 @board-counter-height: @board-counter-width;
-@block-preview-padding: 0.4 * @block-width;
-@block-preview-width: @block-width + (@block-preview-padding * 2);
+@padding: 0.4 * @block-width;
+@block-preview-width: @block-width + (@padding * 2);
 @board-width: @columns * @block-width + (@border-width * 2);
 @board-height: @rows * @block-height + (@border-width * 2);
 @board-container-height: @board-height + @board-score-height - @border-width;
-@block-preview-height: (@block-preview-padding * 3) + (@block-height * 2) + (@border-width * 2);
+@block-preview-height: (@padding * 3) + (@block-height * 2) + (@border-width * 2);
