@@ -20,8 +20,6 @@
   "devDependencies": {
     "concurrently": "^3.1.0",
     "electron": "~1.6.2",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0",
     "less-watch-compiler": "^1.2.3"
   }
 }
