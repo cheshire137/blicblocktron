@@ -14,16 +14,16 @@
     <template id="game-board-template" type="x-tmpl-mustache">
       {{#inProgress}}<div class="board-container in-progress">{{/inProgress}}
       {{^inProgress}}<div class="board-container paused">{{/inProgress}}
-      {{#gameOver}}<div class="board-container game-over">{{/gameOver}}
+      {{#isGameOver}}<div class="board-container game-over">{{/isGameOver}}
         <div class="score">{{ currentScore }}</div>
         <div class="level">{{ level }}</div>
         <div class="board">
           {{#blocks}}
             {{#isHighlighted}}
-              <div class="block {{ color }} pos-{{ x }}{{ y }} glow"></div>
+              <div class="block {{ color }} x-{{ x }} y-{{ y }} glow"></div>
             {{/isHighlighted}}
             {{^isHighlighted}}
-              <div class="block {{ color }} pos-{{ x }}{{ y }}"></div>
+              <div class="block {{ color }} x-{{ x }} y-{{ y }}"></div>
             {{/isHighlighted}}
           {{/blocks}}
         </div>
@@ -32,7 +32,7 @@
             <div class="block {{ color }}"></div>
           {{/upcoming}}
         </div>
-        {{#gameOver}}
+        {{#isGameOver}}
           <div class="game-message game-over">
             <h2 class="simlish">game over</h2>
             <div class="final-score-message">
@@ -56,7 +56,7 @@
               New Game
             </button>
           </div>
-        {{/gameOver}}
+        {{/isGameOver}}
         {{^inProgress}}
           <div class="game-message paused">
             <h2 class="simlish">paused</h2>

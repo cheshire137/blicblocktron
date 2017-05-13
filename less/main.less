@@ -160,16 +160,33 @@ a {
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .-(@x: @rows) when (@x >= 0) {
-      .-(@y: @columns) when (@y >= 0) {
-        &.pos-@{x}@{y} {
-          left: @block-width * @y;
-          top: @block-height * @x;
-        }
-        .-((@y - 1));
-      } .-;
-      .-((@x - 1));
-    } .-;
+    .columnLoop(@x) when (@x > 0) {
+      .columnLoop((@x - 1));
+      &.x-@{x} {
+        left: @block-width * @x;
+      }
+    }
+
+    .rowLoop(@y) when (@y > 0) {
+      .rowLoop((@y - 1));
+      &.y-@{y} {
+        top: @block-height * @y;
+      }
+    }
+
+    .columnLoop(@columns);
+    .rowLoop(@rows);
+
+    // .-(@x: @columns) when (@x >= 0) {
+    //   .-(@y: @rows) when (@y >= 0) {
+    //     &.pos-@{x}@{y} {
+    //       left: @block-width * @x;
+    //       top: @block-height * @y;
+    //     }
+    //     .-((@y - 1));
+    //   } .-;
+    //   .-((@x - 1));
+    // } .-;
     // @for @x from 0 through @rows {
     //   @for @y from 0 through @columns {
     //     &.pos-@x@y {

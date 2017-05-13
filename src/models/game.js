@@ -13,7 +13,7 @@ class Game {
     this.upcoming = [new Block(), new Block()]
     this.blocks = []
     this.inProgress = true
-    this.gameOver = false
+    this.isGameOver = false
     this.interval = null
     this.checking = false
     this.plummetingBlock = false
@@ -73,15 +73,18 @@ class Game {
           block.deactivate()
           this.onBlockLand(block)
         }
+
         if (this.isBlockDirectlyBelow(block)) {
           block.lock()
           block.deactivate()
           this.onBlockLand(block)
         }
       }
+
       if (block.isLocked) {
         continue
       }
+
       block.moveDown()
     }
   }
@@ -91,6 +94,7 @@ class Game {
     if (activeBlock) {
       return
     }
+
     this.dropQueuedBlock()
   }
 
@@ -102,14 +106,17 @@ class Game {
     if (this.checking) {
       return
     }
+
     const middleColumnBlocks = this.getMiddleColumnBlocks()
     if (middleColumnBlocks.length < rowCount) {
-      const y = 0 // at the top
       const x = middleColumnIndex // centered horizontally
+      const y = 0 // at the top
       const topMidBlock = this.blocks.filter(b => b.y === y && b.x === x)[0]
+      console.log(x, y, topMidBlock)
       if (topMidBlock) { // Currently dropping or sliding at the top
         return
       }
+
       const block = this.upcoming[0]
       block.moveTo(x, y)
       this.upcoming[0] = this.upcoming[1]
@@ -130,7 +137,7 @@ class Game {
 
   gameOver() {
     this.inProgress = false
-    this.gameOver = true
+    this.isGameOver = true
     this.cancelGameInterval()
     this.saveHighScore()
   }

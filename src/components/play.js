@@ -18,7 +18,7 @@ class Play {
       existingScoreDate: '', // TODO
       upcoming: this.game.upcoming,
       blocks: this.game.blocks,
-      gameOver: this.game.gameOver,
+      isGameOver: this.game.isGameOver,
       inProgress: this.game.inProgress
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
