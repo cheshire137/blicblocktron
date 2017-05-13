@@ -1,4 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+import { app, BrowserWindow, ipcMain } from 'electron'
+import path from 'path'
+
+const packageInfo = require(path.join(__dirname, '..', 'package.json'))
 
 let mainWindow
 
@@ -7,12 +10,12 @@ function onTitleChange(event, prefix) {
   if (typeof prefix === 'string' && prefix.length > 0) {
     title += `${prefix} - `
   }
-  title += app.getName()
+  title += packageInfo.name
   mainWindow.setTitle(title)
 }
 
 function createWindow() {
-  const title = app.getName()
+  const title = packageInfo.name
   mainWindow = new BrowserWindow({ width: 614, height: 615, title })
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 }

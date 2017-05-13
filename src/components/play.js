@@ -45,8 +45,16 @@ class Play {
     this.game.startGameInterval()
   }
 
+  pauseGame() {
+    this.game.pause()
+  }
+
   onNewGame(event) {
     event.target.blur()
+    this.newGame()
+  }
+
+  newGame() {
     this.game = new Game(this.gameOptions)
     this.render()
     this.startGame()

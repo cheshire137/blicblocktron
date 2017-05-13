@@ -1,5 +1,5 @@
 {
-  "name": "blicblocktron",
+  "name": "Blicblocktron",
   "version": "0.0.1",
   "description": "The game Blicblock from The Sims 4, as a standalone Electron app.",
   "main": "src/es6-init.js",
@@ -10,6 +10,9 @@
     "postinstall": "npm run build-css"
   },
   "repository": "https://github.com/cheshire137/blicblocktron",
+  "bugs": {
+    "url": "https://github.com/cheshire137/blicblocktron/issues"
+  },
   "keywords": [
     "electron",
     "blicblock",
