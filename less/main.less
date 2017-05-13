@@ -100,8 +100,12 @@ a {
 }
 
 .board-container {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
   margin: 0 auto;
+  overflow: hidden;
   width: @board-width + @board-counter-width + @board-block-preview-width - (@board-border-width * 2);
   height: @board-container-height;
 }
@@ -146,42 +150,14 @@ a {
 
     .columnLoop(@columns);
     .rowLoop(@rows);
-
-    // .-(@x: @columns) when (@x >= 0) {
-    //   .-(@y: @rows) when (@y >= 0) {
-    //     &.pos-@{x}@{y} {
-    //       left: @block-width * @x;
-    //       top: @block-height * @y;
-    //     }
-    //     .-((@y - 1));
-    //   } .-;
-    //   .-((@x - 1));
-    // } .-;
-    // @for @x from 0 through @rows {
-    //   @for @y from 0 through @columns {
-    //     &.pos-@x@y {
-    //       left: @block-width * @y;
-    //       top: @block-height * @x;
-    //     }
-    //   }
-    // }
   }
 }
 
 body {
+  overflow: hidden;
   min-height: 100%;
-  background: -moz-linear-gradient(top,  #090313 0%, #0d0d0d 46%, #2b245c 50%, #0a0a0a 53%, #1f194f 76%, #130b36 87%, #1b1b1b 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#090313), color-stop(46%,#0d0d0d), color-stop(50%,#2b245c), color-stop(53%,#0a0a0a), color-stop(76%,#1f194f), color-stop(87%,#130b36), color-stop(100%,#1b1b1b)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#090313', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(to bottom,  #090313 0%,#0d0d0d 46%,#2b245c 50%,#0a0a0a 53%,#1f194f 76%,#130b36 87%,#1b1b1b 100%);
   background-attachment: fixed;
-
-  & > .container {
-    // overflow-x: hidden;
-  }
 }
 
 .caption {
