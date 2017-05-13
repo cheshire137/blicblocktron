@@ -9,7 +9,7 @@ class Game {
   constructor(opts) {
     opts = opts || {}
     this.level = opts.level || 1
-    this.tickLength = opts.tickLength || 1200 // ms
+    this.tickLength = opts.tickLength || 1000 // ms
     this.upcoming = [new Block(), new Block()]
     this.blocks = []
     this.inProgress = true
@@ -165,13 +165,18 @@ class Game {
 
   highlight(block) {
     block.highlight()
-    setTimeout(() => block.dehighlight(), this.tickLength * 0.21)
+    this.triggerUpdate()
+    setTimeout(() => {
+      block.dehighlight()
+      this.triggerUpdate()
+    }, this.tickLength * 0.21)
   }
 
   checkForTetrominos() {
     if (!this.inProgress || this.checking) {
       return
     }
+
     this.checking = true
     for (const block of this.blocks.filter(b => b && b.isLocked && !b.isActive)) {
       const checker = new TetrominoChecker(this.blocks, block)
@@ -186,6 +191,7 @@ class Game {
     if (!this.inProgress) {
       return
     }
+
     const idsToRemove = blocksToRemove.map(b => b.id)
     let idx = this.blocks.length - 1
     while (idx >= 0) {
@@ -237,6 +243,7 @@ class Game {
       callback()
       return
     }
+
     let interval = null
     dropBlock = () => {
       block.plummet()
