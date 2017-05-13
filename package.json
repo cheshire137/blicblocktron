@@ -1,0 +1,20 @@
+{
+  "name": "blicblocktron",
+  "version": "0.0.1",
+  "description": "The game Blicblock from The Sims 4, as a standalone Electron app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/cheshire137/blicblocktron",
+  "keywords": [
+    "electron",
+    "blicblock",
+    "sims",
+    "game"
+  ],
+  "author": "Sarah Vessels",
+  "devDependencies": {
+    "electron-prebuilt-compile": "^1.6.6"
+  }
+}
