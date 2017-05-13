@@ -20,7 +20,9 @@ class Play {
       blocks: this.game.blocks,
       isGameOver: this.game.isGameOver,
       inProgress: this.game.inProgress,
-      isPaused: !this.game.inProgress && !this.game.isGameOver
+      isPaused: !this.game.inProgress && !this.game.isGameOver,
+      showScoreForm: this.game.currentScore > 0,
+      showNewHighScore: false // TODO
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
     this.hookUpButtons()

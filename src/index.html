@@ -38,15 +38,19 @@
             <div class="final-score-message">
               Final score: <span class="value">{{ currentScore }}</span>
             </div>
-            <form class="submit-score-form form-inline">
-              <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
-              <button type="submit">
-                Submit Score
-              </button>
-            </form>
-            <div class="new-high-score-message">
-              New personal high score!
-            </div>
+            {{#showScoreForm}}
+              <form class="submit-score-form form-inline">
+                <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
+                <button type="submit">
+                  Submit Score
+                </button>
+              </form>
+            {{/showScoreForm}}
+            {{#showNewHighScore}}
+              <div class="new-high-score-message">
+                New personal high score!
+              </div>
+            {{/showNewHighScore}}
             <div class="existing-high-score-message">
               Your high score:
               <span class="value">{{ existingHighScore }}</span>
