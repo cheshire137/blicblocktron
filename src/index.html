@@ -20,16 +20,16 @@
         <div class="board">
           {{#blocks}}
             {{#isHighlighted}}
-              <div class="block {{ color }} x-{{ x }} y-{{ y }} glow"></div>
+              <div id="{{ id }}" class="block {{ color }} x-{{ x }} y-{{ y }} glow"></div>
             {{/isHighlighted}}
             {{^isHighlighted}}
-              <div class="block {{ color }} x-{{ x }} y-{{ y }}"></div>
+              <div id="{{ id }}" class="block {{ color }} x-{{ x }} y-{{ y }}"></div>
             {{/isHighlighted}}
           {{/blocks}}
         </div>
         <div class="block-preview">
           {{#upcoming}}
-            <div class="block {{ color }}"></div>
+            <div id="{{ id }}" class="block {{ color }}"></div>
           {{/upcoming}}
         </div>
         {{#isGameOver}}

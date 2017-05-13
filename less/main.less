@@ -2,10 +2,6 @@
 @import "fonts.less";
 
 a, .btn {
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
 
@@ -16,6 +12,7 @@ a {
 }
 
 .block {
+  transition: 0.25s ease-in-out all;
   display: block;
   width: @block-width;
   height: @block-height;
@@ -24,7 +21,6 @@ a {
   border-radius: 2px;
 
   &.glow {
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), inset 0 0 20px rgba(255, 255, 255, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), inset 0 0 20px rgba(255, 255, 255, 0.6);
   }
 
@@ -76,10 +72,6 @@ a {
   width: @board-block-preview-width;
   height: @board-block-preview-height;
   border: @board-border-width solid @board-border-color;
-  -webkit-border-top-right-radius: @board-border-radius;
-  -webkit-border-bottom-right-radius: @board-border-radius;
-  -moz-border-radius-topright: @board-border-radius;
-  -moz-border-radius-bottomright: @board-border-radius;
   border-top-right-radius: @board-border-radius;
   border-bottom-right-radius: @board-border-radius;
   background-color: @board-background-color;
@@ -88,9 +80,6 @@ a {
     position: absolute;
     left: @board-block-preview-padding;
     top: @board-block-preview-padding;
-    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
     & + .block {
@@ -124,10 +113,6 @@ a {
   .block {
     position: absolute;
     border: 1px solid @board-background-color;
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
 
     &.glow {
@@ -283,10 +268,6 @@ html {
   bottom: 0;
   width: @board-counter-width;
   height: @board-counter-height;
-  -webkit-border-top-left-radius: @board-border-radius;
-  -webkit-border-bottom-left-radius: @board-border-radius;
-  -moz-border-radius-topleft: @board-border-radius;
-  -moz-border-radius-bottomleft: @board-border-radius;
   border-top-left-radius: @board-border-radius;
   border-bottom-left-radius: @board-border-radius;
   font-size: @board-counter-height / 5;
@@ -322,10 +303,6 @@ html {
   position: absolute;
   left: @board-counter-width - @board-border-width;
   border: @board-border-width solid @board-border-color;
-  -webkit-border-top-left-radius: @board-border-radius;
-  -webkit-border-top-right-radius: @board-border-radius;
-  -moz-border-radius-topleft: @board-border-radius;
-  -moz-border-radius-topright: @board-border-radius;
   border-top-left-radius: @board-border-radius;
   border-top-right-radius: @board-border-radius;
   width: @board-width;

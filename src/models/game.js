@@ -340,6 +340,7 @@ class Game {
         this.onBlockLand(block)
         callback()
       }
+      this.redraw()
     }
     dropBlock()
     interval = setInterval(dropBlock, 25)
