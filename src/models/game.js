@@ -23,6 +23,14 @@ class Game {
     this.redrawCallback = opts.redrawCallback
   }
 
+  togglePause() {
+    if (this.inProgress) {
+      this.pause()
+    } else {
+      this.resume()
+    }
+  }
+
   pause() {
     if (this.plummetingBlock) {
       return
@@ -38,7 +46,7 @@ class Game {
   }
 
   resume() {
-    if (this.gameOver) {
+    if (this.isGameOver) {
       return
     }
     this.inProgress = true
@@ -144,6 +152,7 @@ class Game {
     if (this.interval) {
       clearInterval(this.interval)
       this.interval = null
+      this.redraw()
     }
   }
 

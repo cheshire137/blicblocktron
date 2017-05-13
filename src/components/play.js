@@ -23,21 +23,36 @@ class Play {
       isPaused: !this.game.inProgress && !this.game.isGameOver
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
+    this.hookUpButtons()
+  }
+
+  hookUpButtons() {
+    const resumeButton = this.container.querySelector('.resume-button')
+    if (resumeButton) {
+      resumeButton.addEventListener('click', e => this.onResume(e))
+    }
   }
 
   startGame() {
     this.game.startGameInterval()
   }
 
+  onResume(event) {
+    event.target.blur()
+    this.game.resume()
+  }
+
   onKeydown(event) {
     const keyCode = event.keyCode
 
-    if (keyCode === 40) {
+    if (keyCode === 40) { // down arrow
       this.game.moveDown()
-    } else if (keyCode === 39) {
+    } else if (keyCode === 39) { // right arrow
       this.game.moveRight()
-    } else if (keyCode === 37) {
+    } else if (keyCode === 37) { // left arrow
       this.game.moveLeft()
+    } else if (keyCode === 32) { // space
+      this.game.togglePause()
     }
   }
 }
