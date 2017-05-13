@@ -6,4 +6,8 @@ window.onload = function() {
   const play = new Play(rootEl, playTemplate)
   play.render()
   play.startGame()
+
+  window.addEventListener('keydown', function(event) {
+    play.onKeydown(event)
+  })
 }

@@ -28,6 +28,18 @@ class Play {
   startGame() {
     this.game.startGameInterval()
   }
+
+  onKeydown(event) {
+    const keyCode = event.keyCode
+
+    if (keyCode === 40) {
+      this.game.moveDown()
+    } else if (keyCode === 39) {
+      this.game.moveRight()
+    } else if (keyCode === 37) {
+      this.game.moveLeft()
+    }
+  }
 }
 
 module.exports = Play

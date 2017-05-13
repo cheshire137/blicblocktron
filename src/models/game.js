@@ -33,7 +33,6 @@ class Game {
 
   triggerUpdate() {
     if (typeof this.onUpdate === 'function') {
-      console.log('updating', new Date().toLocaleTimeString())
       this.onUpdate()
     }
   }
@@ -112,7 +111,6 @@ class Game {
       const x = middleColumnIndex // centered horizontally
       const y = 0 // at the top
       const topMidBlock = this.blocks.filter(b => b.y === y && b.x === x)[0]
-      console.log(x, y, topMidBlock)
       if (topMidBlock) { // Currently dropping or sliding at the top
         return
       }
@@ -224,6 +222,37 @@ class Game {
     return onTop
   }
 
+  moveDown() {
+    if (!this.inProgress) {
+      return
+    }
+    const block = this.getActiveBlock()
+    if (!block || block.isPlummeting || block.isSliding) {
+      return
+    }
+    if (block.y === rowCount - 1) {
+      return
+    }
+    const blockBelow = this.closestBlockBelow(block)
+    let newY = rowCount - 1
+    if (blockBelow) {
+      newY = blockBelow.y - 1
+    }
+    this.plummetBlock(block, newY, () => {
+      this.cancelGameInterval()
+      this.dropQueuedBlockIfNoActive()
+      this.startGameInterval()
+    })
+  }
+
+  moveLeft() {
+
+  }
+
+  moveRight() {
+
+  }
+
   plummetBlocks(blocksToPlummet, index) {
     if (typeof index === 'undefined') {
       index = 0
@@ -245,7 +274,7 @@ class Game {
     }
 
     let interval = null
-    dropBlock = () => {
+    const dropBlock = () => {
       block.plummet()
       this.plummetingBlock = true
       if (block.y < y) {
