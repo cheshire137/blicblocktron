@@ -39,8 +39,20 @@ class Block {
     this.y = y
   }
 
+  moveLeft() {
+    this.x--
+  }
+
   moveDown() {
     this.y++
+  }
+
+  slide() {
+    this.isSliding = true
+  }
+
+  stopSliding() {
+    this.isSliding = false
   }
 
   highlight() {

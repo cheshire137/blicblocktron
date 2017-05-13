@@ -230,7 +230,7 @@ class Game {
     if (!block || block.isPlummeting || block.isSliding) {
       return
     }
-    if (block.y === rowCount - 1) {
+    if (block.y === rowCount - 1) { // In bottom row already
       return
     }
     const blockBelow = this.closestBlockBelow(block)
@@ -246,11 +246,35 @@ class Game {
   }
 
   moveLeft() {
-
+    if (!this.inProgress) {
+      return
+    }
+    const block = this.getActiveBlock()
+    if (!block || block.isPlummeting || block.isSliding) {
+      return
+    }
+    if (block.x === 0) { // Furthest left already
+      return
+    }
+    block.slide()
+    this.slidingBlock = true
+    const blockToLeft = this.closestBlockToLeft(block)
+    if (blockToLeft && blockToLeft.x === block.x - 1) {
+      this.stopSliding(block)
+      return
+    }
+    block.moveLeft()
+    this.triggerUpdate()
+    setTimeout(() => this.stopSliding(block), 100)
   }
 
   moveRight() {
 
+  }
+
+  stopSliding(block) {
+    block.stopSliding()
+    this.slidingBlock = false
   }
 
   plummetBlocks(blocksToPlummet, index) {
@@ -296,8 +320,7 @@ class Game {
   }
 
   closestBlockBelow(block) {
-    const x = block.x
-    const y = block.y
+    const { x, y } = block
     const blocksBelow = this.blocks.filter(b => b.y > y && b.x === x)
     blocksBelow.sort((a, b) => {
       if (a.y < b.y) {
@@ -306,6 +329,18 @@ class Game {
       return (a.y > b.y) ? 1 : 0
     })
     return blocksBelow[0]
+  }
+
+  closestBlockToLeft(block) {
+    const { x, y } = block
+    const blocksToLeft = this.blocks.filter(b => b.y === y && b.x < x)
+    blocksToLeft.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1
+      }
+      return (a.x > b.x) ? 1 : 0
+    })
+    return blocksToLeft[blocksToLeft.length - 1]
   }
 }
 
