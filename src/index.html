@@ -12,7 +12,9 @@
   <body>
     <div id="root"></div>
     <template id="game-board-template" type="x-tmpl-mustache">
-      <div class="board-container">
+      {{#inProgress}}<div class="board-container in-progress">{{/inProgress}}
+      {{^inProgress}}<div class="board-container paused">{{/inProgress}}
+      {{#gameOver}}<div class="board-container game-over">{{/gameOver}}
         <div class="score">{{ currentScore }}</div>
         <div class="level">{{ level }}</div>
         <div class="board">
@@ -30,35 +32,39 @@
             <div class="block {{ color }}"></div>
           {{/upcoming}}
         </div>
-        <div class="game-message game-over">
-          <h2 class="simlish">game over</h2>
-          <div class="final-score-message">
-            Final score: <span class="value">{{ currentScore }}</span>
-          </div>
-          <form class="submit-score-form form-inline">
-            <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
-            <button type="submit">
-              Submit Score
+        {{#gameOver}}
+          <div class="game-message game-over">
+            <h2 class="simlish">game over</h2>
+            <div class="final-score-message">
+              Final score: <span class="value">{{ currentScore }}</span>
+            </div>
+            <form class="submit-score-form form-inline">
+              <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
+              <button type="submit">
+                Submit Score
+              </button>
+            </form>
+            <div class="new-high-score-message">
+              New personal high score!
+            </div>
+            <div class="existing-high-score-message">
+              Your high score:
+              <span class="value">{{ existingHighScore }}</span>
+              <time class="date">{{ existingScoreDate }}</time>
+            </div>
+            <button type="button">
+              New Game
             </button>
-          </form>
-          <div class="new-high-score-message">
-            New personal high score!
           </div>
-          <div class="existing-high-score-message">
-            Your high score:
-            <span class="value">{{ existingHighScore }}</span>
-            <time class="date">{{ existingScoreDate }}</time>
+        {{/gameOver}}
+        {{^inProgress}}
+          <div class="game-message paused">
+            <h2 class="simlish">paused</h2>
+            <button type="button">
+              Resume Game
+            </button>
           </div>
-          <button type="button">
-            New Game
-          </button>
-        </div>
-        <div class="game-message paused">
-          <h2 class="simlish">paused</h2>
-          <button type="button">
-            Resume Game
-          </button>
-        </div>
+        {{/inProgress}}
       </div>
     </template>
   </body>

@@ -20,15 +20,43 @@ class Game {
     this.slidingBlock = false
     this.currentScore = opts.currentScore || 0
     this.scoreValue = opts.scoreValue || 1000
+    this.onUpdate = opts.onUpdate
   }
 
-  loop() {
+  pause() {
+    if (this.plummetingBlock) {
+      return
+    }
+    this.inProgress = false
+    this.cancelGameInterval()
+  }
+
+  triggerUpdate() {
+    if (typeof this.onUpdate === 'function') {
+      console.log('updating', new Date().toLocaleTimeString())
+      this.onUpdate()
+    }
+  }
+
+  resume() {
+    if (this.gameOver) {
+      return
+    }
+    this.inProgress = true
+    this.startGameInterval()
+  }
+
+  startGameInterval() {
+    if (typeof this.interval !== 'undefined' && this.interval !== null) {
+      return
+    }
     this.interval = setInterval(() => {
       if (!this.inProgress || this.plummetingBlock || this.slidingBlock) {
         return
       }
       this.dropBlocks()
       this.dropQueuedBlockIfNoActive()
+      this.triggerUpdate()
     }, this.tickLength)
   }
 

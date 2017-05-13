@@ -1,6 +1,5 @@
 class TetrominoChecker {
   constructor(blocks, block1) {
-    this.index = index
     this.block1 = block1
     this.blocks = blocks.filter(b => {
       return b.color === this.block1.color && b.id !== this.block1.id

@@ -4,7 +4,9 @@ import Mustache from 'mustache'
 class Play {
   constructor(container, templateContainer) {
     this.container = container
-    this.game = new Game()
+    this.game = new Game({
+      onUpdate: () => this.render()
+    })
     this.template = templateContainer.innerHTML
   }
 
@@ -12,13 +14,18 @@ class Play {
     const templateArgs = {
       currentScore: this.game.currentScore,
       level: this.game.level,
-      existingHighScore: 0,
-      existingScoreDate: '',
+      existingHighScore: 0, // TODO
+      existingScoreDate: '', // TODO
       upcoming: this.game.upcoming,
-      blocks: this.game.blocks
+      blocks: this.game.blocks,
+      gameOver: this.game.gameOver,
+      inProgress: this.game.inProgress
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
-    // this.game.loop()
+  }
+
+  startGame() {
+    this.game.startGameInterval()
   }
 }
 

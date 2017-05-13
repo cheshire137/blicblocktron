@@ -5,4 +5,5 @@ window.onload = function() {
   const playTemplate = document.getElementById('game-board-template')
   const play = new Play(rootEl, playTemplate)
   play.render()
+  play.startGame()
 }
