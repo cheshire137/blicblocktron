@@ -4,9 +4,10 @@ import Mustache from 'mustache'
 class Play {
   constructor(container, templateContainer) {
     this.container = container
-    this.game = new Game({
+    this.gameOptions = {
       redrawCallback: () => this.render()
-    })
+    }
+    this.game = new Game(this.gameOptions)
     this.template = templateContainer.innerHTML
   }
 
@@ -33,10 +34,22 @@ class Play {
     if (resumeButton) {
       resumeButton.addEventListener('click', e => this.onResume(e))
     }
+
+    const newGameButton = this.container.querySelector('.new-game-button')
+    if (newGameButton) {
+      newGameButton.addEventListener('click', e => this.onNewGame(e))
+    }
   }
 
   startGame() {
     this.game.startGameInterval()
+  }
+
+  onNewGame(event) {
+    event.target.blur()
+    this.game = new Game(this.gameOptions)
+    this.render()
+    this.startGame()
   }
 
   onResume(event) {
