@@ -9,5 +9,56 @@
     </script>
   </head>
   <body>
+    <div id="root"></div>
+    <template id="game-board-template" type="x-tmpl-mustache">
+      <div class="board-container">
+        <div class="score">{{ currentScore }}</div>
+        <div class="level">{{ level }}</div>
+        <div class="board">
+          {{#blocks}}
+            {{#isHighlighted}}
+              <div class="block {{ color }} pos-{{ x }}{{ y }} glow"></div>
+            {{/isHighlighted}}
+            {{^isHighlighted}}
+              <div class="block {{ color }} pos-{{ x }}{{ y }}"></div>
+            {{/isHighlighted}}
+          {{/blocks}}
+        </div>
+        <div class="block-preview">
+          {{#upcoming}}
+            <div class="block {{ color }}"></div>
+          {{/upcoming}}
+        </div>
+        <div class="game-message game-over">
+          <h2 class="simlish">game over</h2>
+          <div class="final-score-message">
+            Final score: <span class="value">{{ currentScore }}</span>
+          </div>
+          <form class="submit-score-form form-inline">
+            <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
+            <button type="submit">
+              Submit Score
+            </button>
+          </form>
+          <div class="new-high-score-message">
+            New personal high score!
+          </div>
+          <div class="existing-high-score-message">
+            Your high score:
+            <span class="value">{{ existingHighScore }}</span>
+            <time class="date">{{ existingScoreDate }}</time>
+          </div>
+          <button type="button">
+            New Game
+          </button>
+        </div>
+        <div class="game-message paused">
+          <h2 class="simlish">paused</h2>
+          <button type="button">
+            Resume Game
+          </button>
+        </div>
+      </div>
+    </template>
   </body>
 </html>
