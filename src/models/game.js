@@ -20,7 +20,7 @@ class Game {
     this.slidingBlock = false
     this.currentScore = opts.currentScore || 0
     this.scoreValue = opts.scoreValue || 1000
-    this.onUpdate = opts.onUpdate
+    this.redrawCallback = opts.redrawCallback
   }
 
   pause() {
@@ -31,9 +31,9 @@ class Game {
     this.cancelGameInterval()
   }
 
-  triggerUpdate() {
-    if (typeof this.onUpdate === 'function') {
-      this.onUpdate()
+  redraw() {
+    if (typeof this.redrawCallback === 'function') {
+      this.redrawCallback()
     }
   }
 
@@ -55,7 +55,7 @@ class Game {
       }
       this.dropBlocks()
       this.dropQueuedBlockIfNoActive()
-      this.triggerUpdate()
+      this.redraw()
     }, this.tickLength)
   }
 
@@ -163,10 +163,10 @@ class Game {
 
   highlight(block) {
     block.highlight()
-    this.triggerUpdate()
+    this.redraw()
     setTimeout(() => {
       block.dehighlight()
-      this.triggerUpdate()
+      this.redraw()
     }, this.tickLength * 0.21)
   }
 
@@ -264,12 +264,29 @@ class Game {
       return
     }
     block.moveLeft()
-    this.triggerUpdate()
+    this.redraw()
     setTimeout(() => this.stopSliding(block), 100)
   }
 
   moveRight() {
-
+    if (!this.inProgress) {
+      return
+    }
+    const block = this.getActiveBlock()
+    if (!block || block.isPlummeting || block.isSliding) {
+      return
+    }
+    if (block.x === columnCount - 1) { // Furthest right already
+      return
+    }
+    const blockToRight = this.closestBlockToRight(block)
+    if (blockToRight && blockToRight.x === block.x + 1) {
+      this.stopSliding(block)
+      return
+    }
+    block.moveRight()
+    this.redraw()
+    setTimeout(() => this.stopSliding(block), 100)
   }
 
   stopSliding(block) {
@@ -341,6 +358,18 @@ class Game {
       return (a.x > b.x) ? 1 : 0
     })
     return blocksToLeft[blocksToLeft.length - 1]
+  }
+
+  closestBlockToRight(block) {
+    const { x, y } = block
+    const blocksToRight = this.blocks.filter(b => b.y === y && b.x > x)
+    blocksToRight.sort((a, b) => {
+      if (a.x < b.x) {
+        return -1
+      }
+      return (a.x > b.x) ? 1 : 0
+    })
+    return blocksToRight[0]
   }
 }
 

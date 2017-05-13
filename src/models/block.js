@@ -47,6 +47,10 @@ class Block {
     this.y++
   }
 
+  moveRight() {
+    this.x++
+  }
+
   slide() {
     this.isSliding = true
   }

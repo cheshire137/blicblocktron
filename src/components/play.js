@@ -5,7 +5,7 @@ class Play {
   constructor(container, templateContainer) {
     this.container = container
     this.game = new Game({
-      onUpdate: () => this.render()
+      redrawCallback: () => this.render()
     })
     this.template = templateContainer.innerHTML
   }
