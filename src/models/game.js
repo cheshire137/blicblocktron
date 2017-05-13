@@ -189,7 +189,6 @@ class Game {
     for (const block of this.blocks.filter(b => b && b.isLocked && !b.isActive)) {
       const checker = new TetrominoChecker(this.blocks, block)
       if (checker.check()) {
-        console.log('found tetromino', checker.tetromino)
         this.removeBlocks(checker.tetromino)
       }
     }

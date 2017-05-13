@@ -1,6 +1,10 @@
 @import "variables.less";
 @import "fonts.less";
 
+* {
+  box-sizing: border-box;
+}
+
 a, .btn {
   transition: all 0.25s ease-in-out;
 }
@@ -65,20 +69,20 @@ a {
 
 .block-preview {
   position: absolute;
-  top: @board-score-height - @board-border-width;
+  top: @board-score-height - @border-width;
   right: 0;
   text-align: center;
   overflow: hidden;
   width: @board-block-preview-width;
   height: @board-block-preview-height;
-  border: @board-border-width solid @board-border-color;
+  border: @border-width solid @border-color;
   border-top-right-radius: @board-border-radius;
   border-bottom-right-radius: @board-border-radius;
   background-color: @board-background-color;
 
   .block {
     position: absolute;
-    left: @board-block-preview-padding;
+    left: @board-block-preview-padding - @border-width;
     top: @board-block-preview-padding;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
@@ -90,25 +94,25 @@ a {
 
 .board-container {
   position: absolute;
+  color: #fff;
   left: 0;
   top: 0;
   right: 0;
   margin: 0 auto;
   overflow: hidden;
-  width: @board-width + @board-counter-width + @board-block-preview-width - (@board-border-width * 2);
+  width: @board-width + @board-counter-width + @board-block-preview-width - (@border-width * 2);
   height: @board-container-height;
 }
 
 .board {
   background-color: @board-background-color;
-  color: #fff;
   width: @board-width;
   height: @board-height;
   display: block;
   position: relative;
-  left: @board-counter-width - @board-border-width;
-  top: @board-score-height - @board-border-width;
-  border: @board-border-width solid @board-border-color;
+  left: @board-counter-width - @border-width;
+  top: @board-score-height - @border-width;
+  border: @border-width solid @border-color;
 
   .block {
     position: absolute;
@@ -262,7 +266,7 @@ html {
 
 .level {
   background-color: @board-background-color;
-  border: @board-border-width solid @board-border-color;
+  border: @border-width solid @border-color;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -301,8 +305,8 @@ html {
 
 .score {
   position: absolute;
-  left: @board-counter-width - @board-border-width;
-  border: @board-border-width solid @board-border-color;
+  left: @board-counter-width - @border-width;
+  border: @border-width solid @border-color;
   border-top-left-radius: @board-border-radius;
   border-top-right-radius: @board-border-radius;
   width: @board-width;
