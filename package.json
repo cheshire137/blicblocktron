@@ -4,19 +4,24 @@
   "description": "The game Blicblock from The Sims 4, as a standalone Electron app.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "concurrently \"npm run watch-css\" \"electron .\"",
+    "build-css": "lessc less/main.less > main.css",
+    "watch-css": "less-watch-compiler less . main.less"
   },
   "repository": "https://github.com/cheshire137/blicblocktron",
   "keywords": [
     "electron",
     "blicblock",
     "sims",
-    "game"
+    "game",
+    "tetromino"
   ],
   "author": "Sarah Vessels",
   "devDependencies": {
+    "concurrently": "^3.1.0",
     "electron": "~1.6.2",
     "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0"
+    "gulp-less": "^3.3.0",
+    "less-watch-compiler": "^1.2.3"
   }
 }
