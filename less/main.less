@@ -134,16 +134,6 @@ a {
   margin: 0 auto;
   width: @board-width + @board-counter-width + @board-block-preview-width - (@board-border-width * 2);
   height: @board-container-height;
-
-  &.test-mode {
-    .game-message {
-      &.active {
-        &.paused {
-          background-color: rgba(0, 0, 0, 0.7);
-        }
-      }
-    }
-  }
 }
 
 .board {
@@ -261,11 +251,6 @@ code {
       text-shadow: -1px -1px 2px #8A743D, 0 0 0 #000, 1px 1px 2px #634A04;
       letter-spacing: 0.05em;
       font-size: 700%;
-    }
-
-    .test-mode-message {
-      font-size: @font-size-large;
-      margin: 40px;
     }
 
     &.game-over {
