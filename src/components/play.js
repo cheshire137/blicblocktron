@@ -26,7 +26,8 @@ class Play extends EventEmitter {
       inProgress: this.game.inProgress,
       isPaused: !this.game.inProgress && !this.game.isGameOver,
       showScoreForm: this.game.currentScore > 0,
-      showNewHighScore: false // TODO
+      showNewHighScore: false, // TODO
+      showExistingHighScore: false // TODO
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
     this.hookUpButtons()
