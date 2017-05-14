@@ -12,6 +12,17 @@ describe('TetrominoChecker', () => {
     expect(checker.check()).toEqual(false)
   })
 
+  it('returns false when blocks are not contiguous', () => {
+    const b1 = new Block({ x: 1, y: 6, color: 'white' })
+    const b2 = new Block({ x: 2, y: 6, color: 'blue' })
+    const b3 = new Block({ x: 3, y: 6, color: 'white' })
+    const b4 = new Block({ x: 3, y: 5, color: 'white' })
+    const b5 = new Block({ x: 2, y: 5, color: 'white' })
+    const blocks = [b1, b2, b3, b4, b5]
+    const checker = new TetrominoChecker(blocks, b1)
+    expect(checker.check()).toEqual(false)
+  })
+
   it('filters out blocks of a different color', () => {
     const b1 = new Block({ x: 0, y: 0, color: 'blue' })
     const b2 = new Block({ x: 0, y: 1, color: 'magenta' })
