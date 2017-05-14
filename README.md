@@ -13,3 +13,10 @@ Blicblock looks in The Sims 4.
 npm install
 npm start
 ```
+
+### How to Run Tests
+
+```bash
+npm install
+npm test
+```
