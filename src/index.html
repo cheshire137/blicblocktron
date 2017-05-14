@@ -40,24 +40,29 @@
             </div>
             {{#showScoreForm}}
               <form class="submit-score-form form-inline">
-                <input type="text" placeholder="Your initials" maxlength="3" class="form-control" autofocus>
+                <input type="text" placeholder="Your initials" maxlength="3" class="initials-field form-control" autofocus>
                 <button type="submit" class="btn btn-info">
                   Submit Score
                 </button>
               </form>
             {{/showScoreForm}}
-            {{#showNewHighScore}}
+            {{#showRankMessage}}
+              <div class="new-high-score-message">
+                You are #{{ rank }} out of {{ scoreCount }}!
+              </div>
+            {{/showRankMessage}}
+            {{#isHighestPersonalScore}}
               <div class="new-high-score-message">
                 New personal high score!
               </div>
-            {{/showNewHighScore}}
-            {{#showExistingHighScore}}
+            {{/isHighestPersonalScore}}
+            {{#showHighScore}}
               <div class="existing-high-score-message">
                 Your high score:
-                <span class="value">{{ existingHighScore }}</span>
-                <time class="date">{{ existingScoreDate }}</time>
+                <span class="value">{{ highScore.value }}</span>
+                <time class="date">{{ highScore.date }}</time>
               </div>
-            {{/showExistingHighScore}}
+            {{/showHighScore}}
             <button type="button" class="new-game-button btn-primary btn">
               New Game
             </button>
