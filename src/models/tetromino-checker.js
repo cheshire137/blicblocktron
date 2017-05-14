@@ -31,10 +31,28 @@ class TetrominoChecker {
 
     if (this.tetromino.length === 3) {
       this.tetromino.push(this.targetBlock)
-      return true
+      return TetrominoChecker.areBlocksContiguous(this.tetromino)
     }
 
     return false
+  }
+
+  static areBlocksContiguous(blocks) {
+    for (let i = 0; i < blocks.length; i++) {
+      const block = blocks[i]
+      const otherBlocks = blocks.slice(0, i).concat(blocks.slice(i + 1, blocks.length))
+      const touchedBlocks = otherBlocks.filter(b => {
+        return b.x === block.x + 1 && b.y === block.y ||
+          b.x === block.x - 1 && b.y === block.y ||
+          b.x === block.x && b.y === block.y + 1 ||
+          b.x === block.x && b.y === block.y - 1
+      })
+      if (touchedBlocks.length < 1) {
+        return false
+      }
+    }
+
+    return true
   }
 }
 
