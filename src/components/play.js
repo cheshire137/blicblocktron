@@ -1,11 +1,14 @@
+import EventEmitter from 'events'
 import Game from '../models/game'
 import Mustache from 'mustache'
 
-class Play {
+class Play extends EventEmitter {
   constructor(container, templateContainer) {
+    super()
     this.container = container
     this.gameOptions = {
-      redrawCallback: () => this.render()
+      redrawCallback: () => this.render(),
+      gameOverCallback: () => this.gameOver()
     }
     this.game = new Game(this.gameOptions)
     this.template = templateContainer.innerHTML
@@ -43,10 +46,21 @@ class Play {
 
   startGame() {
     this.game.startGameInterval()
+    this.emit('in-progress')
+  }
+
+  gameOver() {
+    this.emit('game-over')
   }
 
   pauseGame() {
     this.game.pause()
+    this.emit('pause-game')
+  }
+
+  resumeGame() {
+    this.game.resume()
+    this.emit('in-progress')
   }
 
   onNewGame(event) {
@@ -62,7 +76,15 @@ class Play {
 
   onResume(event) {
     event.target.blur()
-    this.game.resume()
+    this.resumeGame()
+  }
+
+  togglePause() {
+    if (this.game.inProgress) {
+      this.pauseGame()
+    } else {
+      this.resumeGame()
+    }
   }
 
   onKeydown(event) {
@@ -75,7 +97,7 @@ class Play {
     } else if (keyCode === 37) { // left arrow
       this.game.moveLeft()
     } else if (keyCode === 32) { // space
-      this.game.togglePause()
+      this.togglePause()
     }
   }
 }

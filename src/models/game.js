@@ -22,14 +22,7 @@ class Game {
     this.currentScore = opts.currentScore || 0
     this.scoreValue = opts.scoreValue || 1000
     this.redrawCallback = opts.redrawCallback
-  }
-
-  togglePause() {
-    if (this.inProgress) {
-      this.pause()
-    } else {
-      this.resume()
-    }
+    this.gameOverCallback = opts.gameOverCallback
   }
 
   pause() {
@@ -147,6 +140,9 @@ class Game {
     this.isGameOver = true
     this.cancelGameInterval()
     this.saveHighScore()
+    if (typeof this.gameOverCallback === 'function') {
+      this.gameOverCallback()
+    }
   }
 
   cancelGameInterval() {
