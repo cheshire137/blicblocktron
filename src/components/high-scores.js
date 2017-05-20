@@ -1,7 +1,7 @@
 import EventEmitter from 'events'
 import Mustache from 'mustache'
 
-class Scoreboard extends EventEmitter {
+class HighScores extends EventEmitter {
   constructor(container, templateContainer) {
     super()
     this.container = container
@@ -17,4 +17,4 @@ class Scoreboard extends EventEmitter {
   }
 }
 
-module.exports = Scoreboard
+module.exports = HighScores
