@@ -24,6 +24,8 @@ describe('TetrominoChecker', () => {
     const checker = new TetrominoChecker(blocks, b1)
     expect(checker.check()).toEqual(true)
     expect(checker.tetromino.length).toEqual(4)
+    const actualIDs = checker.tetromino.map(b => b.id).sort()
+    expect(actualIDs).toEqual([b1.id, b2.id, b3.id, b4.id])
   })
 
   it('returns false when matching blocks are not contiguous', () => {

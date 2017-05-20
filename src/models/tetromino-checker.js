@@ -16,9 +16,14 @@ class TetrominoChecker {
       return false
     }
 
-    this.blocks.forEach(block => {
+    for (let i = 0; i < this.blocks.length; i++) {
+      const block = this.blocks[i]
       const xDiff = Math.abs(block.x - this.targetBlock.x)
       const yDiff = Math.abs(block.y - this.targetBlock.y)
+
+      if (this.tetromino.length > 2) {
+        break
+      }
 
       if (block.x === this.targetBlock.x && yDiff <= 3) {
         this.tetromino.push(block)
@@ -27,7 +32,7 @@ class TetrominoChecker {
       } else if (xDiff <= 2 && yDiff <= 1 || xDiff <= 1 && yDiff <= 2) {
         this.tetromino.push(block)
       }
-    })
+    }
 
     if (this.tetromino.length === 3) {
       this.tetromino.push(this.targetBlock)
