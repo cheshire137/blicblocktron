@@ -39,10 +39,16 @@ class MacOSMenu extends AppMenu {
         ]
       },
       {
+        label: 'Scores',
+        submenu: [
+          this.viewHighScoresOption()
+        ]
+      },
+      {
         label: 'Tools',
         submenu: [
           {
-            label: 'Developer Tools',
+            label: 'Developer tools',
             accelerator: 'CmdOrCtrl+Option+I',
             click(item, win) {
               if (win) {

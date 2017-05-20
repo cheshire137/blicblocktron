@@ -12,7 +12,7 @@ class AppMenu extends EventEmitter {
   newGameOption() {
     const self = this
     return {
-      label: 'New Game',
+      label: 'New game',
       click() { self.emit('new-game') }
     }
   }
@@ -20,7 +20,7 @@ class AppMenu extends EventEmitter {
   pauseGameOption(opts) {
     const self = this
     return {
-      label: 'Pause Game',
+      label: 'Pause game',
       click() { self.emit('pause-game') },
       enabled: !opts.paused && !opts.gameOver
     }
@@ -36,9 +36,17 @@ class AppMenu extends EventEmitter {
   resumeGameOption(opts) {
     const self = this
     return {
-      label: 'Resume Game',
+      label: 'Resume game',
       click() { self.emit('resume-game') },
       enabled: opts.paused
+    }
+  }
+
+  viewHighScoresOption() {
+    const self = this
+    return {
+      label: 'View high scores',
+      click() { self.emit('view-high-scores') }
     }
   }
 }

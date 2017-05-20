@@ -11,6 +11,17 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <template id="scoreboard-template" type="x-tmpl-mustache">
+      <ol>
+        {{#scores}}
+          <li>
+            {{rank}} {{initials}} {{value}}
+          </li>
+        {{/scores}}
+      </ol>
+    </template>
+
     <template id="game-board-template" type="x-tmpl-mustache">
       {{#inProgress}}<div class="board-container in-progress">{{/inProgress}}
       {{#isPaused}}<div class="board-container paused">{{/isPaused}}

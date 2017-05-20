@@ -23,10 +23,16 @@ class NonMacOSMenu extends AppMenu {
         ]
       },
       {
+        label: 'Scores',
+        submenu: [
+          this.viewHighScoresOption()
+        ]
+      },
+      {
         label: 'Tools',
         submenu: [
           {
-            label: 'Developer Tools',
+            label: 'Developer tools',
             accelerator: 'CmdOrCtrl+Alt+I',
             click(item, win) {
               if (win) {
