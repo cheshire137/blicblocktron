@@ -1,11 +1,11 @@
-import EventEmitter from 'events'
-import { remote, shell } from 'electron'
+import { remote } from 'electron'
 import path from 'path'
+import AppMenu from './app-menu'
 
 const { app } = remote
 const packageInfo = require(path.join(__dirname, '..', '..', 'package.json'))
 
-class MacOSMenu extends EventEmitter {
+class MacOSMenu extends AppMenu {
   constructor() {
     super()
   }
@@ -26,27 +26,16 @@ class MacOSMenu extends EventEmitter {
           {
             label: 'Quit',
             accelerator: 'Command+Q',
-            click() { app.quit() },
-          },
+            click() { app.quit() }
+          }
         ],
       },
       {
         label: 'Game',
         submenu: [
-          {
-            label: 'New Game',
-            click() { self.emit('new-game') }
-          },
-          {
-            label: 'Pause Game',
-            click() { self.emit('pause-game') },
-            enabled: !opts.paused && !opts.gameOver
-          },
-          {
-            label: 'Resume Game',
-            click() { self.emit('resume-game') },
-            enabled: opts.paused
-          }
+          this.newGameOption(),
+          this.pauseGameOption(opts),
+          this.resumeGameOption(opts)
         ]
       },
       {
@@ -67,10 +56,7 @@ class MacOSMenu extends EventEmitter {
         label: 'Help',
         role: 'help',
         submenu: [
-          {
-            label: 'Report a bug',
-            click() { shell.openExternal(packageInfo.bugs.url) }
-          }
+          this.reportBugOption()
         ]
       }
     ]
