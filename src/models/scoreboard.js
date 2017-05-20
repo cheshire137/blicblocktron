@@ -16,6 +16,14 @@ class Scoreboard {
     return this.config.get(scoresKey) || []
   }
 
+  getScoresWithRank() {
+    const scores = this.getScores()
+    for (let i = 0; i < scores.length; i++) {
+      scores[i].rank = i + 1
+    }
+    return scores
+  }
+
   saveScore(initials, value) {
     const newScore = { initials, value, time: new Date() }
     const scores = this.getScores()

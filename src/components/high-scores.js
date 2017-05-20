@@ -1,6 +1,8 @@
 import EventEmitter from 'events'
 import Mustache from 'mustache'
 
+import Scoreboard from '../models/scoreboard'
+
 class HighScores extends EventEmitter {
   constructor(container, templateContainer) {
     super()
@@ -10,8 +12,9 @@ class HighScores extends EventEmitter {
 
   render(opts) {
     opts = opts || {}
+    const scoreboard = new Scoreboard()
     const templateArgs = {
-      scores: []
+      scores: scoreboard.getScoresWithRank()
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
   }

@@ -1003,3 +1003,46 @@ span.orange {
     }
   }
 }
+
+.high-scores-list {
+  background-color: @board-background-color;
+  font-size: 1.3em;
+  font-family: "press_start_2pregular", "Ocr A Extended", @font-family-monospace;
+  font-weight: 400;
+
+  .rank-1,
+  .rank-1 a {
+    color: @block-blue;
+  }
+
+  li {
+    display: table;
+    padding: 0.75em 0 0.25em 0;
+
+    &:last-child {
+      padding-bottom: 0.75em;
+    }
+
+    & > span {
+      display: table-cell;
+    }
+  }
+
+  .score-rank {
+    text-align: center;
+    min-width: 6em;
+    width: 25%;
+  }
+
+  .score-value {
+    text-align: center;
+    min-width: 6em;
+    width: 35%;
+  }
+
+  .score-initials {
+    text-align: center;
+    min-width: 6em;
+    width: 25%;
+  }
+}

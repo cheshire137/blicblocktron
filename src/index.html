@@ -13,10 +13,12 @@
     <div id="root"></div>
 
     <template id="high-scores-template" type="x-tmpl-mustache">
-      <ol>
+      <ol class="high-scores-list">
         {{#scores}}
-          <li>
-            {{rank}} {{initials}} {{value}}
+          <li class="rank-{{rank}}">
+            <span class="score-rank">{{rank}}</span>
+            <span class="score-initials">{{initials}}</span>
+            <span class="score-value">{{value}}</span>
           </li>
         {{/scores}}
       </ol>
