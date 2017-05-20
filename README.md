@@ -1,5 +1,7 @@
 # Blicblocktron
 
+[![Build Status](https://travis-ci.org/cheshire137/blicblocktron.svg?branch=master)](https://travis-ci.org/cheshire137/blicblocktron)
+
 Play the game Blicblock from The Sims 4 as a standalone desktop app.
 
 ![Screenshot 1](https://raw.githubusercontent.com/cheshire137/blicblocktron/master/screenshot1.png)
