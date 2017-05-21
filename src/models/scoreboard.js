@@ -18,8 +18,19 @@ class Scoreboard {
 
   getScoresWithRank() {
     const scores = this.getScores()
-    for (let i = 0; i < scores.length; i++) {
-      scores[i].rank = i + 1
+    if (scores.length < 1) {
+      return scores
+    }
+    scores[0].rank = 1
+    let previousValue = scores[0].value
+    for (let i = 1; i < scores.length; i++) {
+      const value = scores[i].value
+      if (value === previousValue) {
+        scores[i].rank = scores[i - 1].rank
+      } else {
+        scores[i].rank = scores[i - 1].rank + 1
+      }
+      previousValue = value
     }
     return scores
   }
