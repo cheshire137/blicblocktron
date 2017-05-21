@@ -1,3 +1,6 @@
+import path from 'path'
+import { Howl } from 'howler'
+
 import Block from './block'
 import TetrominoChecker from './tetromino-checker'
 
@@ -23,6 +26,10 @@ class Game {
     this.scoreValue = opts.scoreValue || 1000
     this.redrawCallback = opts.redrawCallback
     this.gameOverCallback = opts.gameOverCallback
+    this.sounds = [
+      new Howl({ src: [path.join(__dirname, '..', 'blic.mp3')] }),
+      new Howl({ src: [path.join(__dirname, '..', 'blic2.mp3')] })
+    ]
   }
 
   pause() {
@@ -164,7 +171,13 @@ class Game {
 
   onBlockLand(block) {
     this.highlight(block)
+    this.playSound()
     this.checkForTetrominos()
+  }
+
+  playSound() {
+    const sound = this.sounds[Math.floor(Math.random() * this.sounds.length)]
+    sound.play()
   }
 
   highlight(block) {
