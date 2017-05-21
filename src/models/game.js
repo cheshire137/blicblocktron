@@ -9,6 +9,10 @@ const columnCount = 5
 const middleColumnIndex = (columnCount - 1) / 2
 
 class Game {
+  static soundPath(name) {
+    return path.join(__dirname, '..', 'sounds', name)
+  }
+
   constructor(opts) {
     opts = opts || {}
     this.level = opts.level || 1
@@ -27,8 +31,8 @@ class Game {
     this.redrawCallback = opts.redrawCallback
     this.gameOverCallback = opts.gameOverCallback
     this.sounds = [
-      new Howl({ src: [path.join(__dirname, '..', 'blic.mp3')] }),
-      new Howl({ src: [path.join(__dirname, '..', 'blic2.mp3')] })
+      new Howl({ src: [Game.soundPath('blic.mp3')] }),
+      new Howl({ src: [Game.soundPath('blic2.mp3')] })
     ]
   }
 
