@@ -37,6 +37,7 @@
     "electron-compilers": "^5.9.0",
     "electron-config": "^1.0.0",
     "electron-packager": "^8.7.0",
+    "howler": "^2.0.3",
     "mustache": "^2.3.0"
   }
 }
