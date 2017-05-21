@@ -25,10 +25,9 @@ class Scoreboard {
     let previousValue = scores[0].value
     for (let i = 1; i < scores.length; i++) {
       const value = scores[i].value
-      if (value === previousValue) {
-        scores[i].rank = scores[i - 1].rank
-      } else {
-        scores[i].rank = scores[i - 1].rank + 1
+      scores[i].rank = scores[i - 1].rank
+      if (value !== previousValue) {
+        scores[i].rank++
       }
       previousValue = value
     }
