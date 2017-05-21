@@ -18,6 +18,11 @@ window.onload = function() {
 
   const highScores = new HighScores(rootEl, highScoresTemplate)
 
+  const classifyBody = (add, remove) => {
+    add.split(' ').forEach(cls => document.body.classList.add(cls))
+    remove.split(' ').forEach(cls => document.body.classList.remove(cls))
+  }
+
   const setMenu = (options) => {
     const isMacOS = process.platform === 'darwin'
     const menuBuilder = isMacOS ? new MacOSMenu() : new NonMacOSMenu()
@@ -55,11 +60,25 @@ window.onload = function() {
     })
   }
 
-  play.on('pause-game', () => setMenu({ paused: true, gameOver: false }))
-  play.on('in-progress', () => setMenu({ paused: false, gameOver: false }))
-  play.on('game-over', () => setMenu({ paused: false, gameOver: true }))
+  play.on('pause-game', () => {
+    classifyBody('play paused', 'in-progress game-over high-scores')
+    setMenu({ paused: true, gameOver: false })
+  })
 
-  highScores.on('render', () => setMenu({ paused: true, highScores: true }))
+  play.on('in-progress', () => {
+    classifyBody('play in-progress', 'paused game-over high-scores')
+    setMenu({ paused: false, gameOver: false })
+  })
+
+  play.on('game-over', () => {
+    classifyBody('play game-over', 'paused in-progress high-scores')
+    setMenu({ paused: false, gameOver: true })
+  })
+
+  highScores.on('render', () => {
+    classifyBody('high-scores', 'paused in-progress play game-over')
+    setMenu({ paused: true, highScores: true })
+  })
 
   window.addEventListener('keydown', (event) => play.onKeydown(event))
 
