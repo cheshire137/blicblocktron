@@ -13,15 +13,24 @@
     <div id="root"></div>
 
     <template id="high-scores-template" type="x-tmpl-mustache">
-      <ol class="high-scores-list">
-        {{#scores}}
-          <li class="rank-{{rank}}">
-            <span class="score-rank">{{rank}}</span>
-            <span class="score-initials">{{initials}}</span>
-            <span class="score-value">{{value}}</span>
-          </li>
-        {{/scores}}
-      </ol>
+      <table class="high-scores-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Initials</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--{{#scores}}-->
+            <tr class="rank-{{rank}}">
+              <td class="score-rank">{{rank}}</td>
+              <td class="score-initials">{{initials}}</td>
+              <td class="score-value">{{value}}</td>
+            </tr>
+          <!--{{/scores}}-->
+        </tbody>
+      </table>
     </template>
 
     <template id="game-board-template" type="x-tmpl-mustache">
