@@ -42,11 +42,12 @@ class AppMenu extends EventEmitter {
     }
   }
 
-  viewHighScoresOption() {
+  viewHighScoresOption(opts) {
     const self = this
     return {
       label: 'View high scores',
-      click() { self.emit('view-high-scores') }
+      click() { self.emit('view-high-scores') },
+      enabled: !opts.highScores
     }
   }
 }

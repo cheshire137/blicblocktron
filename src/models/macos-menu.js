@@ -41,7 +41,7 @@ class MacOSMenu extends AppMenu {
       {
         label: 'Scores',
         submenu: [
-          this.viewHighScoresOption()
+          this.viewHighScoresOption(opts)
         ]
       },
       {

@@ -19,7 +19,8 @@ window.onload = function() {
   const highScores = new HighScores(rootEl, highScoresTemplate)
 
   const setMenu = (options) => {
-    const menuBuilder = process.platform === 'darwin' ? new MacOSMenu() : new NonMacOSMenu()
+    const isMacOS = process.platform === 'darwin'
+    const menuBuilder = isMacOS ? new MacOSMenu() : new NonMacOSMenu()
     const template = menuBuilder.getTemplate(options)
     const menu = Menu.buildFromTemplate(template)
 
@@ -57,6 +58,8 @@ window.onload = function() {
   play.on('pause-game', () => setMenu({ paused: true, gameOver: false }))
   play.on('in-progress', () => setMenu({ paused: false, gameOver: false }))
   play.on('game-over', () => setMenu({ paused: false, gameOver: true }))
+
+  highScores.on('render', () => setMenu({ paused: true, highScores: true }))
 
   window.addEventListener('keydown', (event) => play.onKeydown(event))
 

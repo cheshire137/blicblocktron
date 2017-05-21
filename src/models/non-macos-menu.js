@@ -25,7 +25,7 @@ class NonMacOSMenu extends AppMenu {
       {
         label: 'Scores',
         submenu: [
-          this.viewHighScoresOption()
+          this.viewHighScoresOption(opts)
         ]
       },
       {

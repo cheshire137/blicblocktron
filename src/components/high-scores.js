@@ -17,6 +17,7 @@ class HighScores extends EventEmitter {
       scores: scoreboard.getScoresWithRank()
     }
     this.container.innerHTML = Mustache.render(this.template, templateArgs)
+    this.emit('render')
   }
 }
 
